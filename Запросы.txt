@@ -1,0 +1,172 @@
+--ПРОДУКЦИЯ--
+CREATE TABLE ПРОДУКЦИЯ (
+    ID_Продукции INT PRIMARY KEY,
+    Артикул NVARCHAR(100),
+    ID_Типа_Продукции INT,
+    Наименование NVARCHAR(255),
+    Описание TEXT,
+    Изображение NVARCHAR(500),
+    Минимальная_стоимость_для_партнера DECIMAL(18,2),
+    Длина_упаковки DECIMAL(10,2),
+    Ширина_упаковки DECIMAL(10,2),
+    Высота_упаковки DECIMAL(10,2),
+    Вес_без_упаковки DECIMAL(10,2),
+    Вес_с_упаковкой DECIMAL(10,2),
+    Сертификат_качества NVARCHAR(255),
+    Номер_стандарта NVARCHAR(100),
+    Время_изготовления INT,
+    Себестоимость DECIMAL(18,2),
+    Номер_цеха INT,
+    Количество_человек_на_производстве INT,
+    Необходимые_материалы NVARCHAR(1000),
+    ID_материала INT,
+    FOREIGN KEY (ID_материала) REFERENCES МАТЕРИАЛЫ(ID_Материала)
+);
+
+--ПОСТАВКИ--
+CREATE TABLE ПОСТАВКИ (
+    ID_Поставки INT PRIMARY KEY,
+    ID_Продукции INT,
+    ID_Материала INT,
+    Количество INT,
+    Дата поставки DATE,
+    ID_Сотрудника INT,
+    FOREIGN KEY (ID_материала) REFERENCES МАТЕРИАЛЫ(ID_Материала),
+    FOREIGN KEY (ID_Продукции) REFERENCES ПРОДУКЦИЯ(ID_Продукции),
+    FOREIGN KEY (ID_Сотрудника) REFERENCES СОТРУДНИКИ(ID_Сотрудника),
+);
+
+--МАТЕРИАЛЫ--
+CREATE TABLE МАТЕРИАЛЫ (
+    ID_Материала INT PRIMARY KEY,
+    Наименование NVARCHAR(255),
+    Стоимость_за_единицу DECIMAL(18,2),
+    Единица_измерения NVARCHAR(50),
+    Количество_в_упаковке INT,
+    Минимальный_запас INT
+);
+
+--СОТРУДНИКИ--
+CREATE TABLE СОТРУДНИКИ (
+    ID_Сотрудника INT PRIMARY KEY,
+    ФИО NVARCHAR(255),
+    Дата_рождения DATE,
+    Паспорт NVARCHAR(50),
+    Реквизиты NVARCHAR(500),
+    Семейное_положение NVARCHAR(50),
+    Состояние_здоровья NVARCHAR(500),
+    ID_Кадра INT,
+    FOREIGN KEY (ID_Кадра) REFERENCES КАДРЫ(ID_Кадра)
+);
+
+--ДОСТУП--
+CREATE TABLE ДОСТУП (
+    ID_Доступа INT PRIMARY KEY,
+    Наименование_доступа NVARCHAR(255)
+);
+
+--КАДРЫ--
+CREATE TABLE КАДРЫ (
+    ID_Кадра INT PRIMARY KEY,
+    Наименование NVARCHAR(255),
+    ID_Доступа INT,
+    FOREIGN KEY (ID_Доступа) REFERENCES ДОСТУП(ID_Доступа)
+);
+
+--МЕНЕДЖЕРЫ--
+CREATE TABLE МЕНЕДЖЕРЫ (
+    ID_Менеджера INT PRIMARY KEY,
+    ФИО NVARCHAR(255),
+    Телефон NVARCHAR(20),
+    Почта NVARCHAR(255),
+    ID_Сотрудника INT,
+    FOREIGN KEY (ID_Сотрудника) REFERENCES СОТРУДНИКИ(ID_Сотрудника)
+);
+
+--ИСТОРИЯ_ЦЕН--
+CREATE TABLE ИСТОРИЯ_ЦЕН (
+    ID_истории INT PRIMARY KEY,
+    ID_продукта INT,
+    Предыдущая_цена DECIMAL(18,2),
+    Текущая_цена DECIMAL(18,2),
+    Дата_изменения DATETIME,
+    FOREIGN KEY (ID_продукта) REFERENCES ПРОДУКЦИЯ(ID_Продукции)
+);
+
+--ПАРТНЕРЫ--
+CREATE TABLE ПАРТНЕРЫ (
+    ID_Партнера INT PRIMARY KEY,
+    ID_Тип_партнера INT,
+    Наименование_компании NVARCHAR(255),
+    Юридический_адрес NVARCHAR(500),
+    ИНН NVARCHAR(12),
+    ФИО_директора NVARCHAR(255),
+    Телефон NVARCHAR(20),
+    Почта NVARCHAR(255),
+    Логотип NVARCHAR(500),
+    Текущий_рейтинг DECIMAL(3,1),
+    Место_продажи NVARCHAR(255)
+);
+
+--ИСТОРИЯ_ИЗМЕНЕНИЯ_РЕЙТИНГА--
+CREATE TABLE ИСТОРИЯ_ИЗМЕНЕНИЯ_РЕЙТИНГА (
+    ID_Истории INT PRIMARY KEY,
+    ID_Партнера INT,
+    Предыдущий_рейтинг DECIMAL(3,1),
+    Текущий_рейтинг DECIMAL(3,1),
+    Изменения_внес INT,
+    Дата_последнего_изменения DATETIME,
+    FOREIGN KEY (ID_Партнера) REFERENCES ПАРТНЕРЫ(ID_Партнера)
+);
+
+--ЗАЯВКИ--
+CREATE TABLE ЗАЯВКИ (
+    ID_заявки INT PRIMARY KEY,
+    ID_партнера INT,
+    ID_Менеджера INT,
+    Дата_заявки DATETIME,
+    Стоимость DECIMAL(18,2),
+    Количество INT,
+    Статус NVARCHAR(50),
+    Конечная_стоимость DECIMAL(18,2),
+    Тип_доставки NVARCHAR(100),
+    ID_истории INT,
+    FOREIGN KEY (ID_партнера) REFERENCES ПАРТНЕРЫ(ID_Партнера),
+    FOREIGN KEY (ID_Менеджера) REFERENCES МЕНЕДЖЕРЫ(ID_Менеджера),
+    FOREIGN KEY (ID_истории) REFERENCES ИСТОРИЯ_ЦЕН(ID_истории)
+);
+
+--МАТЕРИАЛЫ_ПРОДУКЦИЯ--
+CREATE TABLE МАТЕРИАЛЫ_ПРОДУКЦИЯ (
+    ID_Продукции INT,
+    ID_Материала INT,
+    PRIMARY KEY (ID_Продукции, ID_Материала),
+    FOREIGN KEY (ID_Продукции) REFERENCES ПРОДУКЦИЯ(ID_Продукции),
+    FOREIGN KEY (ID_Материала) REFERENCES МАТЕРИАЛЫ(ID_Материала)
+);
+
+--ПОСТАВЩИКИ--
+CREATE TABLE ПОСТАВЩИКИ (
+    ID_Поставщика INT PRIMARY KEY,
+    ID_Типа_поставщика INT,
+    Наименование_компании NVARCHAR(255),
+    ИНН NVARCHAR(12)
+);
+
+--МАТЕРИАЛЫ_ПОСТАВЩИКИ--
+CREATE TABLE МАТЕРИАЛЫ_ПОСТАВЩИКИ (
+    ID_Материала INT,
+    ID_Поставщика INT,
+    PRIMARY KEY (ID_Материала, ID_Поставщика),
+    FOREIGN KEY (ID_Материала) REFERENCES МАТЕРИАЛЫ(ID_Материала),
+    FOREIGN KEY (ID_Поставщика) REFERENCES ПОСТАВЩИКИ(ID_Поставщика)
+);
+
+
+
+CREATE TABLE ВХОД (
+ID_Кадра INT PRIMARY KEY,
+Логин NVARCHAR(50),
+Пароль NVARCHAR(50),
+FOREIGN KEY (ID_Кадра) REFERENCES КАДРЫ(ID_Кадра)
+)
