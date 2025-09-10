@@ -1,0 +1,15 @@
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\bin\Debug\System_management_MOZAIKA.exe.config
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\bin\Debug\System_management_MOZAIKA.exe
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\bin\Debug\System_management_MOZAIKA.pdb
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.csproj.AssemblyReference.cache
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.MainForm.resources
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.Properties.Resources.resources
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.csproj.GenerateResource.cache
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.csproj.CoreCompileInputs.cache
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.exe
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.pdb
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.Form1.resources
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.Form2.resources
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.Form3.resources
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.Form4.resources
+E:\4 Курс\УП 02.01\задания\4\System_management_MOZAIKA\System_management_MOZAIKA\obj\Debug\System_management_MOZAIKA.Form5.resources
